@@ -1,0 +1,21 @@
+<div class="container mt-5">
+    <div *ngIf="!registerMode" style="text-align: center;">
+
+        <h1 class="text-primary">Find Your Virtual Friends</h1>
+        <h4 class="text-center">All You Need To Do In SIGNUP!!</h4>
+
+        <div class="text-center">
+            <button (click)="registerToggle()" class="btn btn-danger btn-lg mr-2">REGISTER</button>
+            <button class="btn btn-success btn-lg">Learn More</button>
+        </div>
+
+    </div>
+
+    <div *ngIf="registerMode" class="container">
+        <div class="row justify-content-center">
+            <div class="col-4">
+               <app-register  (cancelRegister)="cancelRegisterMode($event)"></app-register>
+            </div>
+        </div>
+    </div>
+</div>

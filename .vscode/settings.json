@@ -1,3 +1,4 @@
 {
-    "omnisharp.projectLoadTimeout": 200
+    "omnisharp.projectLoadTimeout": 200,
+    
 }

@@ -1,0 +1,19 @@
+<h4>Internal Server Error  refreshing the page for error is disapair!</h4>
+<ng-container *ngIf="error">
+    <h5 class="text-danger">Error : {{error.message}}</h5>
+    <p class="font-weight bold">Note : If you are seeing this then angular is probably not to blame</p>
+    <p>What to do next?</p>
+
+    <ol>
+        <li>Open the chorme dev tools</li>
+        <li>Inspect the network tab</li>
+        <li>Check the failing ruquest</li>
+        <li>Examing the request URL and make sure this is correct</li>
+        <li>Reproduce the error in postman if we see the same issue,then this problem is not only Angular</li>
+    </ol>
+    <p>Follwing the track trace - this is where your investigation should start!</p>
+    <code class="mt-5" style="background-color: whitesmoke;">
+    {{error.details}}
+    </code>
+
+</ng-container>

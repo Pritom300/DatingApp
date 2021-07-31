@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 using API.Controllers;
 using API.DTOs;
 using API.Interfaces;
@@ -50,6 +51,24 @@ namespace DatingApp.API.Controllers
         public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
              return await _userRepository.GetMemberAsync(username);
+        }
+
+
+
+
+        [HttpPut]
+        public async Task <ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
+        {
+             var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+             var user = await _userRepository.GetUserByUsernameAsync(username);
+
+             _mapper.Map(memberUpdateDto, user);  // user.City = memberUpdateDto.City (we donn't need to do that if we use AutoMapper)
+
+            _userRepository.Update(user);
+
+             if (await _userRepository.SaveAllAsync()) return NoContent();
+
+            return BadRequest("Failed to update user");
         }
     }
 }
